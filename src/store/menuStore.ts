@@ -1,11 +1,15 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-interface MenuStore {
+interface MenuState {
   activeMenu: string;
+  isCollapsed: boolean;
   setActiveMenu: (menu: string) => void;
+  toggleSidebar: () => void;
 }
 
-export const useMenuStore = create<MenuStore>((set) => ({
-  activeMenu: 'about',
-  setActiveMenu: (menu) => set({ activeMenu: menu }),
+export const useMenuStore = create<MenuState>((set) => ({
+  activeMenu: "about",
+  isCollapsed: false,
+  setActiveMenu: (menu: string) => set({ activeMenu: menu }),
+  toggleSidebar: () => set((state) => ({ isCollapsed: !state.isCollapsed })),
 }));

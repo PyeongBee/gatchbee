@@ -1,13 +1,33 @@
 "use client";
 import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
+import { useMenuStore } from "@/store/menuStore";
 
 export default function Home() {
+  const { isCollapsed } = useMenuStore();
+
   return (
-    <div className="min-h-screen bg-white flex select-none">
+    <div className="min-h-screen bg-white flex select-none relative">
       <Sidebar />
+      <div className="absolute right-4 top-4">
+        <Link
+          href="/login"
+          className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors"
+        >
+          <span className="text-white text-xl">P</span>
+        </Link>
+      </div>
 
       {/* Main Content */}
-      <div className="ml-64 flex-1">
+      <div
+        className={`flex-1 transition-all duration-300 ${
+          isCollapsed ? "ml-4" : "ml-64"
+        }`}
+        style={{
+          width: isCollapsed ? "calc(100% - 64px)" : "calc(100% - 256px)",
+          marginLeft: isCollapsed ? "16px" : "256px",
+        }}
+      >
         <div className="container mx-auto px-4 py-16">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-yellow-700 mb-6">
@@ -15,7 +35,7 @@ export default function Home() {
             </h1>
             <div className="flex justify-center gap-4 mb-16">
               <button className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                [ 커피챗 신청하기]
+                [커피챗 신청하기]
               </button>
             </div>
           </div>
@@ -80,10 +100,10 @@ export default function Home() {
 
               <div className="text-center">
                 <p className="text-xl text-gray-800 mb-8">
-                  [ 커피챗 신청하기] 지금 이 순간부터, 당신의 다음이 시작됩니다.
+                  지금 이 순간부터, 당신의 다음이 시작됩니다.
                 </p>
                 <button className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                  [ 커피챗 신청하기]
+                  커피챗 신청하기
                 </button>
               </div>
             </div>

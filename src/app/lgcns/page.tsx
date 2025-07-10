@@ -34,7 +34,7 @@ export default function LGCNSPage() {
             {buttons.map((button) => (
               <Link
                 key={button.text}
-                href={`/${button.text.toLowerCase().replace(/[^a-z]/g, '')}`}
+                href={`/${button.text.toLowerCase().replace(/[^a-z]/g, "")}`}
                 onClick={() => setActiveMenu(button.text)}
                 className="w-full bg-yellow-50 hover:bg-yellow-100 text-yellow-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
