@@ -2,10 +2,12 @@
 
 import Sidebar from "@/components/Sidebar";
 import { useState } from "react";
+import { useMenuStore } from "@/store/menuStore";
 
 export default function LoginPage() {
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isCollapsed } = useMenuStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +21,13 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-white flex">
       <Sidebar />
-      <div className="ml-64 flex-1">
+      <div
+        className="ml-64 flex-1 transition-all duration-300"
+        style={{
+          marginLeft: isCollapsed ? "16px" : "256px",
+          width: isCollapsed ? "calc(100% - 64px)" : "calc(100% - 256px)",
+        }}
+      >
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-8">
@@ -58,9 +66,7 @@ export default function LoginPage() {
               </button>
 
               <div className="text-center text-gray-600">
-                <p>
-                  개인 정보는 안전하게 보호됩니다.
-                </p>
+                <p>개인 정보는 안전하게 보호됩니다.</p>
               </div>
             </form>
           </div>

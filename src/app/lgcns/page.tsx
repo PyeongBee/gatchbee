@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useMenuStore } from "@/store/menuStore";
 
 export default function LGCNSPage() {
-  const { setActiveMenu } = useMenuStore();
+  const { setActiveMenu, isCollapsed } = useMenuStore();
   const buttons = [
     { text: "자소서 첨삭 문의", icon: "📝", href: "#" },
     { text: "첨삭 GPT", icon: "🤖", href: "#" },
@@ -19,7 +19,13 @@ export default function LGCNSPage() {
   return (
     <div className="min-h-screen bg-white flex">
       <Sidebar />
-      <div className="ml-64 flex-1">
+      <div
+        className="ml-64 flex-1 transition-all duration-300"
+        style={{
+          marginLeft: isCollapsed ? "16px" : "256px",
+          width: isCollapsed ? "calc(100% - 64px)" : "calc(100% - 256px)",
+        }}
+      >
         <div className="container mx-auto px-4 py-16">
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-yellow-700 mb-4">
